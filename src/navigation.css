@@ -1,0 +1,338 @@
+.nav-container {
+    z-index: 100;
+    perspective: 1200px;
+    perspective-origin: 50% -50%;
+    max-height: 100vh;
+    animation-duration: .6s;
+    animation-name: navContainer;
+    animation-timing-function: cubic-bezier(0.6, 0, 0.4, 1);
+}
+
+.unmount-nav-container {
+    animation-duration: .5s;
+    animation-name: navContainerUnmount;
+    animation-timing-function: cubic-bezier(0.6, 0, 0.4, 1);
+}
+
+@keyframes navContainerUnmount {
+    from {
+        position: relative;
+        top: 0;
+    }
+    to {
+        position: relative;
+        top: -90px;
+    }
+}
+
+@keyframes navContainer {
+    from {
+        position: relative;
+        top: -41vh;
+    }
+    to {
+        position: relative;
+        top: 0;
+    }
+}
+
+.nav-list {
+    display: flex;
+    padding: 0 20px;
+    height: 90px;
+    width: 600px;
+    margin: 0 auto;
+    align-items: flex-end;
+    justify-content: space-evenly;
+    animation-duration: 1s;
+    animation-name: navListAnim;
+    animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.nav-list div {
+    cursor: pointer;
+}
+
+@keyframes navListAnim {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 250px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: none
+    }
+}
+
+.nav-list-unmount {
+    animation-duration: 2s;
+    animation-name: navListAnimUnmount;
+    animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+@keyframes navListAnimUnmount {
+    from {
+        opacity: 1;
+        transform: none
+    }
+    to {
+        opacity: 0;
+        transform: translate3d(0, 250px, 0);
+    }
+}
+
+.div1 {
+    transform: translate3d(0px, 35%, -200px);
+    animation-name: example1;
+    animation-duration: .6s;
+    animation-timing-function: cubic-bezier(0.6, 0, 0.4, 1);
+    overflow-y: auto;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    z-index: 5;
+    opacity: 1;
+}
+
+@keyframes example1 {
+    from {
+        transform: none
+    }
+    to {
+        transform: translate3d(0px, 35%, -200px)
+    }
+}
+
+.div2 {
+    transform: translate3d(0px, 30%, -250px);
+    animation-name: example2;
+    animation-duration: .6s;
+    position: absolute;
+    animation-timing-function: cubic-bezier(0.6, 0, 0.4, 1);
+    overflow-y: auto;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 4;
+    opacity: .9;
+}
+
+@keyframes example2 {
+    from {
+        transform: none
+    }
+    to {
+        transform: translate3d(0px, 30%, -250px);
+    }
+}
+
+.div3 {
+    transform: translate3d(0px, 25%, -300px);
+    animation-name: example3;
+    animation-duration: .6s;
+    overflow-y: auto;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    animation-timing-function: cubic-bezier(0.6, 0, 0.4, 1);
+    position: absolute;
+    z-index: 3;
+    opacity: .8;
+}
+
+@keyframes example3 {
+    from {
+        transform: none
+    }
+    to {
+        transform: translate3d(0px, 25%, -300px);
+    }
+}
+
+.unmount {
+    transform: none;
+    animation-name: example4;
+    animation-duration: .5s;
+    animation-timing-function: cubic-bezier(0.6, 0, 0.4, 1);
+}
+
+@keyframes example4 {
+    from {
+        transform: translate3d(0px, 30%, -250px);
+    }
+    to {
+        transform: none
+    }
+}
+
+.unmount-unselected {
+    transform: translate3d(0px, 100%, -200px);
+    animation-name: example4-unselected;
+    animation-duration: .5s;
+    animation-timing-function: cubic-bezier(0.6, 0, 0.4, 1);
+}
+
+@keyframes example4-unselected {
+    from {
+        transform: translate3d(0px, 30%, -250px);
+    }
+    to {
+        transform: translate3d(0px, 200%, -200px);
+    }
+}
+
+.unmount2 {
+    opacity: 1;
+    transform: none;
+    animation-name: example5;
+    animation-duration: .5s;
+    animation-timing-function: cubic-bezier(0.6, 0, 0.4, 1);
+}
+
+@keyframes example5 {
+    from {
+        transform: translate3d(0px, 35%, -200px);
+    }
+    to {
+        transform: translate3d(0px, 200%, -200px);
+    }
+}
+
+.unmount2-selected {
+    opacity: 1;
+    transform: none;
+    animation-name: example5-selected;
+    animation-duration: .5s;
+    animation-timing-function: cubic-bezier(0.6, 0, 0.4, 1);
+}
+
+@keyframes example5-selected {
+    from {
+        transform: translate3d(0px, 35%, -200px);
+    }
+    to {
+        transform: none;
+    }
+}
+
+.unmount3 {
+    transform: none;
+    animation-name: example6;
+    animation-duration: .5s;
+    animation-timing-function: cubic-bezier(0.6, 0, 0.4, 1);
+}
+
+@keyframes example6 {
+    from {
+        transform: translate3d(0px, 25%, -300px);
+    }
+    to {
+        transform: translate3d(0px, 200%, -200px);
+    }
+}
+
+.unmount3-selected {
+    opacity: 1;
+    transform: none;
+    animation-name: example6-selected;
+    animation-timing-function: cubic-bezier(0.6, 0, 0.4, 1);
+    animation-duration: .5s;
+}
+
+@keyframes example6-selected {
+    from {
+        transform: translate3d(0px, 25%, -300px);
+    }
+    to {
+        transform: none;
+    }
+}
+
+.rest-div {
+    transform: translate3d(0px, 25%, -300px);
+    /* animation-name: example3; */
+    /* animation-duration: .6s; */
+    overflow-y: auto;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    /* animation-timing-function: cubic-bezier(0.6, 0, 0.4, 1); */
+    position: absolute;
+    z-index: 1;
+    opacity: .1;
+}
+
+
+/* .unmount4 {
+    transform: none;
+    animation-name: example7;
+    animation-duration: .5s;
+    animation-timing-function: cubic-bezier(0.6, 0, 0.4, 1);
+}
+
+@keyframes example7 {
+    from {
+        transform: translate3d(0px, 25%, -300px);
+    }
+    to {
+        transform: translate3d(0px, 100%, -200px);
+    }
+} */
+
+.unmount4-selected {
+    opacity: 1;
+    transform: none;
+    animation-name: example7-selected;
+    animation-timing-function: cubic-bezier(0.6, 0, 0.4, 1);
+    animation-duration: .5s;
+}
+
+@keyframes example7-selected {
+    from {
+        transform: translate3d(0px, 25%, -300px);
+    }
+    to {
+        transform: none;
+    }
+}
+
+.hamburger .line {
+    width: 50px;
+    height: 5px;
+    background-color: coral;
+    display: block;
+    margin: 8px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger:hover {
+    cursor: pointer;
+}
+
+#hamburger-1.is-active .line:nth-child(2) {
+    opacity: 0;
+}
+
+#hamburger-1.is-active .line:nth-child(1) {
+    -webkit-transform: translateY(13px) rotate(45deg);
+    -ms-transform: translateY(13px) rotate(45deg);
+    -o-transform: translateY(13px) rotate(45deg);
+    transform: translateY(13px) rotate(45deg);
+}
+
+#hamburger-1.is-active .line:nth-child(3) {
+    -webkit-transform: translateY(-13px) rotate(-45deg);
+    -ms-transform: translateY(-13px) rotate(-45deg);
+    -o-transform: translateY(-13px) rotate(-45deg);
+    transform: translateY(-13px) rotate(-45deg);
+}
+
+.btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    box-sizing: border-box;
+}
