@@ -1,5 +1,5 @@
 # animated-navigation
-
+> Demo find here http://animated-navigation.surge.sh/
 > provides navigation page with animation
 
 [![NPM](https://img.shields.io/npm/v/animated-navigation.svg)](https://www.npmjs.com/package/animated-navigation) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
@@ -14,13 +14,8 @@ npm install --save animated-navigation
 
 ```jsx
 import React, { useState } from 'react';
-import Sample from './Sample1'
-import Sample2 from './Sample2'
-import Sample3 from './Sample3';
-import Sample4 from './Sample4';
 import { Switch, Route, BrowserRouter as Router, useHistory } from 'react-router-dom'
 import Navigation from 'animated-navigation';
-import { Home } from './Home';
 
 const Dummy = (props) => { // this is for getting the history object from react-router
   let history = useHistory();
