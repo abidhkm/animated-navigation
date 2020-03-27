@@ -1,11 +1,9 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react'
-import './navigation.css'
-// import { useHistory } from "react-router-dom";
+import './navigation.scss'
 import delayUnmounting from './delayedComponent'
 
-const Navigation = delayUnmounting(({ isMounted, data, onNavigate, history }) => {
-  // let history = useHistory();
-
+const Navigation = ({ showMenu, data, onNavigate, history }) => {
   const [selected, setSelected] = useState(null)
 
   const comp1 = data[0]
@@ -14,11 +12,11 @@ const Navigation = delayUnmounting(({ isMounted, data, onNavigate, history }) =>
   const rest = data.slice(3) || []
 
   useEffect(() => {
-    if (!isMounted) {
+    if (!showMenu) {
       const activePage = data.findIndex(item => item.path === history.location.pathname) + 1
       setSelected(activePage)
     }
-  }, [isMounted, data, history.location.pathname])
+  }, [showMenu, data, history.location.pathname])
 
   const finfdUnmountingClass = (item) => { // to find class when this component gonna unmount
     switch (item) {
@@ -41,9 +39,9 @@ const Navigation = delayUnmounting(({ isMounted, data, onNavigate, history }) =>
 
   return <React.Fragment>
 
-    <div className={`nav-list ${!isMounted ? 'nav-list-unmount' : ''} `} >
+    <div className={`nav-list ${!showMenu ? 'nav-list-unmount' : ''} `} >
       {
-        [...data].map((item, index) => <div
+        [...data].map((item, index) => <div className='nav-item'
           onClick={() => { handleCLick(item.path, index + 1) }}
         >
           <span>
@@ -53,11 +51,11 @@ const Navigation = delayUnmounting(({ isMounted, data, onNavigate, history }) =>
       }
     </div>
 
-    <div className={`nav-container ${!isMounted ? 'unmount-nav-container' : ''} `}>
+    <div className={`nav-container ${!showMenu ? 'unmount-nav-container' : ''} `}>
 
       <div
         onClick={() => { handleCLick(comp1.path, 1) }}
-        className={`div1 ${!isMounted ? finfdUnmountingClass(1) : ''}`}>
+        className={`div1 ${!showMenu ? finfdUnmountingClass(1) : ''}`}>
         <comp1.component />
       </div>
 
@@ -65,7 +63,7 @@ const Navigation = delayUnmounting(({ isMounted, data, onNavigate, history }) =>
         onClick={() => {
           handleCLick(comp2.path, 2)
         }}
-        className={`div2 ${!isMounted ? finfdUnmountingClass(2) : ''}`}>
+        className={`div2 ${!showMenu ? finfdUnmountingClass(2) : ''}`}>
         <comp2.component />
       </div>
 
@@ -73,7 +71,7 @@ const Navigation = delayUnmounting(({ isMounted, data, onNavigate, history }) =>
         onClick={() => {
           handleCLick(comp3.path, 3)
         }}
-        className={`div3 ${!isMounted ? finfdUnmountingClass(3) : ''}`}>
+        className={`div3 ${!showMenu ? finfdUnmountingClass(3) : ''}`}>
         <comp3.component />
       </div>
 
@@ -85,7 +83,7 @@ const Navigation = delayUnmounting(({ isMounted, data, onNavigate, history }) =>
             onClick={() => {
               handleCLick(item.path, index + 1 + 3)
             }}
-            className={`rest-div ${!isMounted ? finfdUnmountingClass(index + 1 + 3) : ''}`}>
+            className={`rest-div ${!showMenu ? finfdUnmountingClass(index + 1 + 3) : ''}`}>
             <Component />
           </div>
         })
@@ -93,6 +91,6 @@ const Navigation = delayUnmounting(({ isMounted, data, onNavigate, history }) =>
 
     </div>
   </React.Fragment>
-})
+}
 
-export default Navigation
+export default delayUnmounting(Navigation)

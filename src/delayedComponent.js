@@ -1,55 +1,57 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-did-update-set-state */
-import React from 'react'
-import './navigation.css'
+import React, { useEffect, useRef, useState } from 'react'
+import './navigation.scss'
 
-function delayUnmounting(Component) {
-  return class extends React.Component {
-        state = {
-          shouldRender: this.props.isMounted
-        };
+function usePrevious(value) {
+  const ref = useRef()
+  useEffect(() => {
+    ref.current = value
+  })
+  return ref.current
+}
 
-        handleMenuClick() {
-          if (!this.props.isMounted) {
-            this.props.setShowMenu(true)
-          } else {
-            this.props.history.push(window.location.path)
-            this.props.setShowMenu(false)
-          }
-        }
+const delayUnmounting = Component => props => {
+  const [shouldRender, setShouldRender] = useState(props.showMenu)
 
-        componentDidUpdate(prevProps) {
-          if (prevProps.isMounted && !this.props.isMounted) {
-            this.setState({
-              unmounted: true
-            })
-            setTimeout(
-              () => this.setState({ shouldRender: false }),
-              500
-            )
-          } else if (!prevProps.isMounted && this.props.isMounted) {
-            this.setState({ shouldRender: true })
-          }
-        }
+  function handleMenuClick() {
+    if (!props.showMenu) {
+      props.setShowMenu(true)
+    } else {
+      props.history.push(window.location.path)
+      props.setShowMenu(false)
+    }
+  }
+  const prevCount = usePrevious(props.showMenu)
 
-        render() {
-          const button = <div className='btn-container' >
-            <div onClick={() => this.handleMenuClick()} className={`hamburger ${this.props.isMounted && 'is-active'}`} id='hamburger-1'>
-              <span className='line' />
-              <span className='line' />
-              <span className='line' />
-            </div>
-          </div>
+  useEffect(() => {
+    if (prevCount && !props.showMenu) {
+      setTimeout(
+        () => setShouldRender(false),
+        500
+      )
+    } else if (!prevCount && props.showMenu) {
+      setShouldRender(true)
+    }
+  }, [prevCount, props.showMenu])
 
-          return this.state.shouldRender
-            ? <React.Fragment>
-              {button}
-              <Component {...this.props}
-                unmounted={this.state.unmounted}
-              />
-            </React.Fragment> : <React.Fragment>{button}</React.Fragment>
-        }
+  const button = <div className='btn-container' >
+    <div onClick={() => handleMenuClick()} className={`hamburger ${props.showMenu && 'is-active'}`} id='hamburger-1'>
+      <span className='line' />
+      <span className='line' />
+      <span className='line' />
+    </div>
+  </div>
+
+  if (shouldRender) {
+    return <React.Fragment>
+      {button}
+      <Component {...props}
+      />
+    </React.Fragment>
+  } else {
+    return <React.Fragment>{button}</React.Fragment>
   }
 }
 
-export default (delayUnmounting)
+export default delayUnmounting

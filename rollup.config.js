@@ -10,28 +10,27 @@ import pkg from './package.json'
 
 export default {
   input: 'src/index.js',
-  output: [
-    {
-      file: pkg.main,
-      format: 'cjs',
-      sourcemap: true
-    },
-    {
-      file: pkg.module,
-      format: 'es',
-      sourcemap: true
-    }
+  output: [{
+    file: pkg.main,
+    format: 'cjs',
+    sourcemap: true
+  },
+  {
+    file: pkg.module,
+    format: 'es',
+    sourcemap: true
+  }
   ],
   plugins: [
     external(),
     postcss({
-      modules: true
+      modules: false
     }),
     url(),
     svgr(),
     babel({
       exclude: 'node_modules/**',
-      plugins: [ 'external-helpers' ]
+      plugins: ['external-helpers']
     }),
     resolve(),
     commonjs()

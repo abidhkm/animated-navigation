@@ -250,34 +250,14 @@
 
 .rest-div {
     transform: translate3d(0px, 25%, -300px);
-    /* animation-name: example3; */
-    /* animation-duration: .6s; */
     overflow-y: auto;
     top: 0;
     width: 100%;
     height: 100vh;
-    /* animation-timing-function: cubic-bezier(0.6, 0, 0.4, 1); */
     position: absolute;
     z-index: 1;
     opacity: .1;
 }
-
-
-/* .unmount4 {
-    transform: none;
-    animation-name: example7;
-    animation-duration: .5s;
-    animation-timing-function: cubic-bezier(0.6, 0, 0.4, 1);
-}
-
-@keyframes example7 {
-    from {
-        transform: translate3d(0px, 25%, -300px);
-    }
-    to {
-        transform: translate3d(0px, 100%, -200px);
-    }
-} */
 
 .unmount4-selected {
     opacity: 1;
@@ -335,4 +315,28 @@
     justify-content: flex-end;
     padding: 10px;
     box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .nav-list {
+        flex-direction: column;
+        align-items: flex-start;
+        height: 160px;
+        justify-content: space-between;
+        width: unset;
+    }
+    .nav-item {
+        width: 100%;
+        text-align: center;
+    }
+    @keyframes navContainerUnmount {
+        from {
+            position: relative;
+            top: 0;
+        }
+        to {
+            position: relative;
+            top: -160px;
+        }
+    }
 }
