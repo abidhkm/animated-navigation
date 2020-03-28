@@ -1,5 +1,6 @@
 # animated-navigation
-> Demo find here http://animated-navigation.surge.sh/
+> Demo find here http://animated-navigation.surge.sh
+
 > provides navigation page with animation
 
 [![NPM](https://img.shields.io/npm/v/animated-navigation.svg)](https://www.npmjs.com/package/animated-navigation) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
